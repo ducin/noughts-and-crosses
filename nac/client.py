@@ -1,18 +1,30 @@
 #!/usr/bin/python
 
-import config
-import game
 import socket
+import config
+from game import Game
 
-print 'Connecting to ', config.host, config.port
+print 'Noughts and crosses, v1.0'
+print 'Connecting to', config.host, config.port
 s = socket.socket()
 s.connect((config.host, config.port))
 
-msg = ''
-while msg != 'exit':
-	msg = raw_input(game.client_label)
-	s.send(msg)
-	msg = s.recv(1024)
-	print game.server_label, msg
+game = Game()
+game.display()
+while game.continues():
+	print 'Waiting for opponent move'
+	his_move = s.recv(1)
+	print 'Opponent >>', his_move
+	game.set(int(his_move))
+	game.display()
+	if not game.continues():
+		break
+	my_move = raw_input('Your move: ')
+	while not game.set(int(my_move)):
+		'This field cannot be marked.'
+		my_move = raw_input('Your move: ')
+	game.display()
+	s.send(my_move)
+print game.winner if game.winner else 'Nobody', 'has won!'
 s.close
 print 'Connection closed'
