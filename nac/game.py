@@ -12,33 +12,41 @@ class Game():
         self.turn = self.X
         self.winner = None
 
-    def switch(self):
+    def _check_winner(self):
+        for c in self.COMBINATIONS:
+            sign = self.fields[c[0]]
+            if sign is not None and self.fields[c[1]] == sign and self.fields[c[2]] == sign:
+                self.winner = sign
+                break
+
+    def _set(self, position):
+        if position < 0 or position >= 9:
+            raise ValueError('Position must be between 0 and 8')
+        if self.fields[position] is not None:
+            raise ValueError('Cell %s is already taken' % position)
+        self.fields[position] = self.turn
+        self._check_winner()
         self.turn = self.O if self.turn == self.X else self.X
 
-    def set(self, position):
-        if (not position in range(9)) or (self.get(position) != None):
-            return False
-        self.fields[position] = self.turn
-        self.switch()
-        self.check_winner()
-        return True
-
-    def get(self, position):
-        return self.fields[position]
+    def move(self):
+        result = None
+        while result is None:
+            try:
+                pos = int(raw_input('Your input: '))
+                self._set(pos)
+                result = pos
+            except ValueError, err:
+                print str(err)
+        return result
 
     def continues(self):
-        return self.winner is None
-
-    def check_winner(self):
-        for c in self.COMBINATIONS:
-            if self.get(c[0]) == self.get(c[1]) == self.get(c[2]) and self.get(c[0]) != None:
-                self.winner = self.get(c[0])
-                break
-        if None not in self.fields:
-            self.winner = False
+        return None in self.fields and self.winner is None 
 
     def display(self):
-        fn = lambda pos: '(' + self.fields[pos] + ')' \
+        fn = lambda pos: ' ' + self.fields[pos] + ' ' \
                 if self.fields[pos] is not None else '(' + str(pos) + ')'
         print '%s|%s|%s\n---+---+---\n%s|%s|%s\n---+---+---\n%s|%s|%s\n' % \
                 tuple(fn(pos) for pos in xrange(9))
+
+    def display_result(self):
+        print self.winner if self.winner else 'Nobody', 'has won!'
