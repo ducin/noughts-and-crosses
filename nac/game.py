@@ -8,7 +8,7 @@ class Game():
     COMBINATIONS = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
 
     def __init__(self):
-        self.fields = [[None, None, None],[None, None, None],[None, None, None]]
+        self.fields = [None, None, None, None, None, None, None, None, None]
         self.turn = self.X
         self.winner = None
 
@@ -18,13 +18,13 @@ class Game():
     def set(self, position):
         if (not position in range(9)) or (self.get(position) != None):
             return False
-        self.fields[position // 3][position % 3] = self.turn
+        self.fields[position] = self.turn
         self.switch()
         self.checkWinner()
         return True
 
     def get(self, position):
-        return self.fields[position // 3][position % 3]
+        return self.fields[position]
 
     def continues(self):
         return self.winner == None
@@ -34,7 +34,7 @@ class Game():
             if self.get(c[0]) == self.get(c[1]) == self.get(c[2]) and self.get(c[0]) != None:
                 self.winner = self.get(c[0])
                 break
-        if (not None in self.fields[0]) and (not None in self.fields[1]) and (not None in self.fields[2]):
+        if None not in self.fields:
             self.winner = False
 
     def display(self):
