@@ -26,5 +26,5 @@ while game.continues():
 	game.display()
 	s.send(my_move)
 print game.winner if game.winner else 'Nobody', 'has won!'
-s.close
+s.close()
 print 'Connection closed'
