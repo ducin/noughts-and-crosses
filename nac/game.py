@@ -27,7 +27,7 @@ class Game():
         return self.fields[position]
 
     def continues(self):
-        return self.winner == None
+        return self.winner is None
 
     def checkWinner(self):
         for c in self.COMBINATIONS:
@@ -38,27 +38,7 @@ class Game():
             self.winner = False
 
     def display(self):
-        self.display_advanced()
-
-    def display_simple(self):
-        for line in self.fields:
-            print line
-        print
-
-    def get_element_display(self, position):
-        if self.get(position) == None:
-            return '(' + str(position) + ')'
-        else:
-            return ' ' + self.get(position) + ' '
-
-    def display_advanced(self):
-        str = '\n'
-        tmp_all = []
-        for a in range(3):
-            tmp_line = []
-            for b in range(3):
-                tmp_line.append(self.get_element_display(a*3 + b))
-            str_line = '|'.join(tmp_line) + '\n'
-            tmp_all.append(str_line)
-        str += '---+---+---\n'.join(tmp_all)
-        print str
+        fn = lambda pos: '(' + self.fields[pos] + ')' \
+                if self.fields[pos] is not None else '(' + str(pos) + ')'
+        print '%s|%s|%s\n---+---+---\n%s|%s|%s\n---+---+---\n%s|%s|%s\n' % \
+                tuple(fn(pos) for pos in xrange(9))
