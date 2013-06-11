@@ -20,7 +20,7 @@ class Game():
             return False
         self.fields[position] = self.turn
         self.switch()
-        self.checkWinner()
+        self.check_winner()
         return True
 
     def get(self, position):
@@ -29,7 +29,7 @@ class Game():
     def continues(self):
         return self.winner is None
 
-    def checkWinner(self):
+    def check_winner(self):
         for c in self.COMBINATIONS:
             if self.get(c[0]) == self.get(c[1]) == self.get(c[2]) and self.get(c[0]) != None:
                 self.winner = self.get(c[0])
