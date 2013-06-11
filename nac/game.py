@@ -5,7 +5,7 @@ class Game():
     X = 'X'
     O = 'O'
 
-    combinations = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
+    COMBINATIONS = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
 
     def __init__(self):
         self.fields = [[None, None, None],[None, None, None],[None, None, None]]
@@ -30,7 +30,7 @@ class Game():
         return self.winner == None
 
     def checkWinner(self):
-        for c in self.combinations:
+        for c in self.COMBINATIONS:
             if self.get(c[0]) == self.get(c[1]) == self.get(c[2]) and self.get(c[0]) != None:
                 self.winner = self.get(c[0])
                 break
