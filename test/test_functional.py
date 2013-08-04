@@ -22,8 +22,12 @@ class TestGame(unittest.TestCase):
         time.sleep(1)
         fo = open(self.FILES['o'][1],'r')
         fx = open(self.FILES['x'][1],'r')
-        self.assertEqual(fo.readlines()[-2].strip(), 'O has won!')
-        self.assertEqual(fx.readlines()[-2].strip(), 'O has won!')
+        fol = fo.readlines()
+        fxl = fx.readlines()
+        self.assertEqual(fol[-2].strip(), 'O has won!')
+        self.assertEqual(fxl[-2].strip(), 'O has won!')
+        print fol
+        print fxl
         fo.close()
         fx.close()
         os.remove(self.FILES['o'][1])
