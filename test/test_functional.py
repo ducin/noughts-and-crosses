@@ -15,7 +15,7 @@ class TestGame(unittest.TestCase):
         # start server inside a new thread
         thread.start_new_thread( self.server, () )
         # make sure the client starts later than the server
-        time.sleep(0.1)
+        time.sleep(1)
         # start client inside another new thread
         thread.start_new_thread( self.client, () )
         # make sure they both finish the play before the main script continues
