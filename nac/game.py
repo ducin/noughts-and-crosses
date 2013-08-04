@@ -1,58 +1,52 @@
-class Enum(set):
-    '''Based on answer: http://stackoverflow.com/a/2182437/769384'''
-    def __getattr__(self, name):
-        if name in self:
-            return name
-        raise AttributeError
-
-Signs = Enum(["O", "X"])
 
 class Game():
     '''Game class implements Noughts and Crosses game logic'''
-    combinations = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
+
+    X = 'X'
+    O = 'O'
+
+    COMBINATIONS = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
+
     def __init__(self):
-        self.fields = [[None, None, None],[None, None, None],[None, None, None]]
-        self.turn = Signs.X
+        self.fields = [None, None, None, None, None, None, None, None, None]
+        self.turn = self.X
         self.winner = None
-    def switch(self):
-        self.turn = Signs.O if self.turn == Signs.X else Signs.X
-    def set(self, position):
-        if (not position in range(9)) or (self.get(position) != None):
-            return False
-        self.fields[position // 3][position % 3] = self.turn
-        self.switch()
-        self.checkWinner()
-        return True
-    def get(self, position):
-        return self.fields[position // 3][position % 3]
-    def continues(self):
-        return self.winner == None
-    def checkWinner(self):
-        for c in self.combinations:
-            if self.get(c[0]) == self.get(c[1]) == self.get(c[2]) and self.get(c[0]) != None:
-                self.winner = self.get(c[0])
+
+    def _check_winner(self):
+        for c in self.COMBINATIONS:
+            sign = self.fields[c[0]]
+            if sign is not None and self.fields[c[1]] == sign and self.fields[c[2]] == sign:
+                self.winner = sign
                 break
-        if (not None in self.fields[0]) and (not None in self.fields[1]) and (not None in self.fields[2]):
-            self.winner = False
+
+    def _set(self, position):
+        if position < 0 or position >= 9:
+            raise ValueError('Position must be between 0 and 8')
+        if self.fields[position] is not None:
+            raise ValueError('Cell %s is already taken' % position)
+        self.fields[position] = self.turn
+        self._check_winner()
+        self.turn = self.O if self.turn == self.X else self.X
+
+    def move(self):
+        result = None
+        while result is None:
+            try:
+                pos = int(raw_input('Your input: '))
+                self._set(pos)
+                result = pos
+            except ValueError, err:
+                print str(err)
+        return result
+
+    def continues(self):
+        return None in self.fields and self.winner is None 
+
     def display(self):
-        self.display_advanced()
-    def display_simple(self):
-        for line in self.fields:
-            print line
-        print
-    def get_element_display(self, position):
-        if self.get(position) == None:
-            return '(' + str(position) + ')'
-        else:
-            return ' ' + self.get(position) + ' '
-    def display_advanced(self):
-        str = '\n'
-        tmp_all = []
-        for a in range(3):
-            tmp_line = []
-            for b in range(3):
-                tmp_line.append(self.get_element_display(a*3 + b))
-            str_line = '|'.join(tmp_line) + '\n'
-            tmp_all.append(str_line)
-        str += '---+---+---\n'.join(tmp_all)
-        print str
+        fn = lambda pos: ' ' + self.fields[pos] + ' ' \
+                if self.fields[pos] is not None else '(' + str(pos) + ')'
+        print '%s|%s|%s\n---+---+---\n%s|%s|%s\n---+---+---\n%s|%s|%s\n' % \
+                tuple(fn(pos) for pos in xrange(9))
+
+    def display_result(self):
+        print self.winner if self.winner else 'Nobody', 'has won!'
