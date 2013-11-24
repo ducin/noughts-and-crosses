@@ -1,7 +1,6 @@
 # importing module from one directory above
 import os
 import sys
-sys.path.append(os.path.abspath(__file__ + "/../.."))
 from nac.game import Game
 
 import unittest

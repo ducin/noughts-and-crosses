@@ -9,7 +9,7 @@ DIR = os.path.abspath(__file__ + "/..")
 
 class TestGame(unittest.TestCase):
 
-    FILES = {'o': [DIR + '/input.os', DIR + '/output.os', DIR + '/../nac/client.py'], 'x': [DIR + '/input.xs', DIR + '/output.xs', DIR + '/../nac/server.py']}
+    FILES = {'o': [DIR + '/input.os', DIR + '/output.os', DIR + '/../client.py'], 'x': [DIR + '/input.xs', DIR + '/output.xs', DIR + '/../server.py']}
 
     def test_play(self):
         # start server inside a new thread
