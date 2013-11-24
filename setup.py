@@ -6,14 +6,14 @@ def read(fname):
 
 setup(
     name = "nac",
-    version = "0.1.0",
+    version = "0.1",
     author = "Tomasz Ducin",
     author_email = "tomasz.ducin@gmail.com",
     description = "Noughts and Crosses (aka Tic Tac Toe) game implementation",
     license = "MIT",
     keywords = "game",
     url = "https://github.com/tkoomzaaskz/noughts-and-crosses",
-    packages = ['nac', 'tests'],
+    packages = ['nac'],
     classifiers = [
         "Development Status :: 3 - Alpha",
         "Topic :: Games/Entertainment",
