@@ -10,14 +10,20 @@ overview
 --------
 
 This repository holds a python package implementing a simple socket game,
-[Noughts and Crosses](http://en.wikipedia.org/wiki/Tic-tac-toe).
+`Noughts and Crosses`_.
+
+.. _Noughts and Crosses: http://en.wikipedia.org/wiki/Tic-tac-toe
 
 First you shall run the server, and then the client:
+
+::
 
     $ ./nac/server.py
     $ ./nac/client.py
 
 You will see the game board represented by few console lines:
+
+::
 
     (0)|(1)|(2)
     ---+---+---
@@ -28,6 +34,8 @@ You will see the game board represented by few console lines:
 Enter the position you want to put your mark:
 
 Your move: 0
+
+::
 
      X |(1)|(2)
     ---+---+---
@@ -42,5 +50,6 @@ travis
 
 This project is continuously integrated with travis-ci.org:
 
-[![Build Status](https://travis-ci.org/tkoomzaaskz/noughts-and-crosses.png?branch=master)](https://travis-ci.org/tkoomzaaskz/noughts-and-crosses)
+.. image:: https://travis-ci.org/tkoomzaaskz/noughts-and-crosses.png?branch=master
+  :target: https://travis-ci.org/tkoomzaaskz/noughts-and-crosses
 
