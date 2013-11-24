@@ -1,10 +1,12 @@
 noughts-and-crosses
 ===================
 
+Simple socket/console game implementation.
+
 dependencies
 ------------
 
-python version: 2.6, 2.7
+Works under python version: 2.6, 2.7. No additional dependencies.
 
 overview
 --------
