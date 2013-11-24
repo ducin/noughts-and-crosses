@@ -3,10 +3,14 @@ noughts-and-crosses
 
 Simple socket/console game implementation.
 
-dependencies
-------------
+dependencies & installation
+---------------------------
 
-Works under python version: 2.6, 2.7. No additional dependencies.
+Works under python version: 2.6, 2.7. No additional dependencies. Install package with pip:
+
+::
+
+    $ pip install nac
 
 overview
 --------

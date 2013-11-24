@@ -12,7 +12,7 @@ setup(
     description = "Noughts and Crosses (aka Tic Tac Toe) game implementation",
     license = "MIT",
     keywords = "game",
-    url = "https://pypi.python.org/pypi/nac",
+    url = "https://github.com/tkoomzaaskz/noughts-and-crosses",
     packages = ['nac', 'tests'],
     classifiers = [
         "Development Status :: 3 - Alpha",
