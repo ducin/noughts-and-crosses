@@ -3,6 +3,12 @@ noughts-and-crosses
 
 Simple socket/console game implementation.
 
+.. image:: https://travis-ci.org/tkoomzaaskz/noughts-and-crosses.png?branch=master
+  :target: https://travis-ci.org/tkoomzaaskz/noughts-and-crosses
+
+.. image:: https://badge.fury.io/py/nac.svg
+    :target: http://badge.fury.io/py/nac
+
 dependencies & installation
 ---------------------------
 
@@ -50,12 +56,4 @@ Your move: 0
     (6)|(7)|(8)
 
 The server is 'X' and the client is 'O'.
-
-travis
-------
-
-This project is continuously integrated with travis-ci.org:
-
-.. image:: https://travis-ci.org/tkoomzaaskz/noughts-and-crosses.png?branch=master
-  :target: https://travis-ci.org/tkoomzaaskz/noughts-and-crosses
 
