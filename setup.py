@@ -2,7 +2,8 @@ import os
 from setuptools import setup
 
 def read(fname):
-    return open(os.path.join(os.path.dirname(os.path.abspath(__file__)), fname)).read()
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), fname)) as file_handle:
+        return file_handle.read()
 
 setup(
     name = "nac",
