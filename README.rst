@@ -3,8 +3,8 @@ noughts-and-crosses
 
 Simple socket/console game implementation.
 
-.. image:: https://travis-ci.org/tkoomzaaskz/noughts-and-crosses.png?branch=master
-  :target: https://travis-ci.org/tkoomzaaskz/noughts-and-crosses
+.. image:: https://travis-ci.org/ducin/noughts-and-crosses.png?branch=master
+  :target: https://travis-ci.org/ducin/noughts-and-crosses
 
 .. image:: https://badge.fury.io/py/nac.svg
     :target: http://badge.fury.io/py/nac
